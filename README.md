@@ -33,13 +33,15 @@ My Junior High Algebra teacher Mr. Martin said, "You can't see complex zeros on 
 
 **ChatGPT prompt**
 ``` text
-write a python console app to plot the surface of the absolute value of y, for the equation y = ax^2 + bx + c, where y and x are complex numbers, prompting the user for the scalar values of a, b and c. 
+write a python console app to plot the surface of the absolute value of y, 
+for the equation y = ax^2 + bx + c, where y and x are complex numbers, 
+prompting the user for the scalar values of a, b and c. 
 ```
 
 The graphic shows the result of running the code, after I fixed a minor bug
 
 ChatGPT got one variable wrong in the python code, it used Z on line 21 and 26 I changed it to S (because it had already used Z on line 18)
-
+![parabola](parabola-zeros.jpg "zeros")
 
 ## Trading Game
 
@@ -47,10 +49,14 @@ To demonstrate the Pareto effect, Jordan Petersen described a random trading gam
 
 **ChatGPT prompt**
 ``` text
-create a python console app with 40 players each starting with 10 dollars where the players having more than 0 dollars are grouped into pairs where each pair tosses a coin, and the loser pays the winner 1 dollar, keeping score of the players balances, plotting a graph of the players balances
+create a python console app with 40 players each starting with 10 dollars 
+where the players having more than 0 dollars are grouped into pairs 
+where each pair tosses a coin, and the loser pays the winner 1 dollar, 
+keeping score of the players balances, plotting a graph of the players balances
 ```
 
 If players are out when they reach 0 dollars, one player ends up with all the money.
+![parabola](trading-game.jpg "zeros")
 
 
 
