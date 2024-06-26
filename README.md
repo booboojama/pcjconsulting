@@ -4,7 +4,7 @@
 ## Overview
 
 English is the new programming language.  
-Here are simple examples of prompting ChatGPT to code in python and c++ to do things like demonstrate math concepts, or implement basic algorithms.
+Here are simple examples of prompting ChatGPT to code in python and c to do things like demonstrate math concepts, or implement basic algorithms.
 <br />
 <br />
 Prompt engineering criteria to produce useful code: 
@@ -62,18 +62,55 @@ If players are out when they reach 0 dollars, one player ends up with all the mo
 
 ## Graph Traversal
 
-From a simple prompt, ChatGPT figured out whether to use recursion, and depth-first or width-first search to traverse an object graph.
+Can ChatGPT do it in python? Yes. It knew to use depth-first search for the first prompt and breadth-first search for the second. And it knew to prevent circular references that cause a stack overflow.
 
 **ChatGPT prompt**
 ``` text
-create a C console app to find the minimum number of hops from John to Dave through the specified relatives pairs
+create a python console app
+to determine the number of hops from PersonA to PersonB
+by traversing a list of RelativesPairs
+where each list element is defined as [Person, RelatedToPerson]
+return -1 if PersonA is not related to PersonB
+```
+
+![python](traverse-graph-py1.jpg "traverse")
+
+**ChatGPT prompt**
+``` text
+create a python console app
+to determine the **minimum** number of hops from PersonA to PersonB
+by traversing a list of RelativesPairs
+where each list element is defined as [Person, RelatedToPerson]
+return -1 if PersonA is not related to PersonB
+```
+
+![python](traverse-graph-py2.jpg "traverse")
+
+And in C.
+
+**ChatGPT prompt**
+``` text
+create a C console app to find the number of hops from John to Dave through the specified relatives pairs
 where each pair is {person, relative}
 given these values:
 int john = 1;
 int dave = 2;
 int relativesPairs[][2] = {{1,3}, {4,5}, {4,1}, {5,2}, {5,1}, {3,4}, {3,5}, {1,5}};
 ```
+![python](traverse-graph-c3.jpg "traverse")
 
+**ChatGPT prompt**
+``` text
+create a C console app to find the **minimum** number of hops from John to Dave through the specified relatives pairs
+where each pair is {person, relative}
+given these values:
+int john = 1;
+int dave = 2;
+int relativesPairs[][2] = {{1,3}, {4,5}, {4,1}, {5,2}, {5,1}, {3,4}, {3,5}, {1,5}};
+```
+![python](traverse-graph-c2.jpg "traverse")
+
+I coded a main to run it.
 ``` shell
 #include <iostream>
 #include <vector>
@@ -82,24 +119,6 @@ int relativesPairs[][2] = {{1,3}, {4,5}, {4,1}, {5,2}, {5,1}, {3,4}, {3,5}, {1,5
 #include <unordered_map>
 #include <stdio.h>
 #include <stdbool.h>
-
-int findHops(int person, int target, int relativesPairs[][2], int numPairs, bool visited[]) {
-    if (person == target) {
-        return 0;
-    }
-    int minHops = -1;
-    for (int i = 0; i < numPairs; i++) {
-        if (relativesPairs[i][0] == person && !visited[relativesPairs[i][1]]) {
-            visited[relativesPairs[i][1]] = true;
-            int hops = findHops(relativesPairs[i][1], target, relativesPairs, numPairs, visited);
-            if (hops >= 0 && (minHops == -1 || hops + 1 < minHops)) {
-                minHops = hops + 1;
-            }
-            visited[relativesPairs[i][1]] = false;
-        }
-    }
-    return minHops;
-}
 
 int main() {
     int john = 1;
@@ -117,4 +136,5 @@ int main() {
     }
 
     return 0;
-}```
+}
+```
